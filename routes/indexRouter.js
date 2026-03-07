@@ -21,7 +21,7 @@ indexRouter.get('/', (req, res) => {
 })
 
 indexRouter.get('/new', (req, res) => {
-    res.render('new');
+    res.render('form');
 })
 
 module.exports = indexRouter;
