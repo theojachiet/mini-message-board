@@ -4,7 +4,11 @@
         <title>Mini-message Board</title>
     </head>
     <body>
-        <p>Some content</p>
+        <ul>
+            <% messages.forEach(message => { %>
+                <li><%-  message.user + ': ' + message.text %></li>
+            <% }) %>
+        </ul>
         <a href="/new">New message</a>
     </body>
 </html>
