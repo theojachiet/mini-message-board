@@ -8,13 +8,9 @@ app.use(express.static(assetsPath));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.get('/', (req, res) => {
-    res.render('index');
-})
+const indexRouter = require('./routes/indexRouter');
 
-app.get('/new', (req, res) => {
-    res.render('new');
-} );
+app.use('/', indexRouter);
 
 app.listen(3000, (error) => {
     if (error) throw error;
