@@ -7,12 +7,12 @@ const messages = [
   {
     text: "Hi there!",
     user: "Amando",
-    added: new Date()
+    added: new Date().toLocaleDateString('fr')
   },
   {
     text: "Hello World!",
     user: "Charles",
-    added: new Date()
+    added: new Date().toLocaleDateString('fr')
   }
 ];
 
@@ -27,7 +27,7 @@ indexRouter.get('/new', (req, res) => {
 indexRouter.post('/new', (req, res) => {
   const messageUser = req.body.messageUser;
   const messageText= req.body.messageText;
-  messages.push({text: messageText, user: messageUser, added: new Date()});
+  messages.push({text: messageText, user: messageUser, added: new Date().toLocaleDateString('fr')});
   res.redirect('/');
 })
 
