@@ -47,7 +47,7 @@ li {
 }
 
 li:hover {
-    box-shadow: 0px 0px 27px -4px rgba(200,200,200,0.77);
+    box-shadow: 0px 0px 27px -4px rgba(200, 200, 200, 0.77);
     transition: all 0.15s;
 }
 
@@ -83,4 +83,37 @@ li:hover {
     background-color: whitesmoke;
     padding: 1.5rem;
     border-radius: 4px;
+}
+
+/* FORM */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: gray;
+}
+
+input,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid gray;
+}
+
+button {
+    font-size: inherit;
+    font-family: inherit;
+    background-color: hsla(243, 63%, 63%, 0.51);
+    color: rgb(44, 44, 44);
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
 }
