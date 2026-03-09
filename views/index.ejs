@@ -8,15 +8,17 @@
 <body>
     <ul>
         <% messages.forEach(message=> { %>
-            <li>
-                <div class="messageInfo">
-                    <div class="nameContainer"><%- message.user %></div>
-                    <div class="dateContainer"><%- message.added %></div>
-                </div>
-                <div class="messageText">
-                    <%- message.text %>
-                </div>
-            </li>
+            <a href="/<%= message.id %>">
+                <li>
+                    <div class="messageInfo">
+                        <div class="nameContainer"><%- message.user %></div>
+                        <div class="dateContainer"><%- message.added %></div>
+                    </div>
+                    <div class="messageText">
+                        <%- message.text %>
+                    </div>
+                </li>
+            </a>
             <% }) %>
     </ul>
     <a href="/new">New message</a>
