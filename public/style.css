@@ -73,3 +73,14 @@ li:hover {
     font-size: 0.8rem;
     text-align: center;
 }
+
+/* MESSAGE PAGE */
+.messageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: whitesmoke;
+    padding: 1.5rem;
+    border-radius: 4px;
+}

@@ -6,7 +6,17 @@
 </head>
 
 <body>
-    Message
+    <div class="messageContainer">
+        <div class="messageInfo">
+            <%- message.user %> : 
+                <%- message.added %>
+        </div>
+        <div class="messageText">
+            <%- message.text %>
+        </div>
+
+    </div>
+
 </body>
 
 </html>

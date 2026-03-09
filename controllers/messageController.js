@@ -4,7 +4,7 @@ async function getMessageById(req, res) {
     const { messageId } = req.params;
 
     try {
-        const message = await db.getMessageById(Number(messageId));
+        const message = await db.getMessageFromDB(Number(messageId));
 
         if (!message) {
             throw new Error('Message not found');
@@ -13,7 +13,7 @@ async function getMessageById(req, res) {
         res.render('../views/message', { message: message });
     } catch (error) {
         console.error('Error while retrieving message: ', error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send('Internal Server Error' + error);
     }
 };
 

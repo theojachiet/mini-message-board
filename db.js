@@ -13,8 +13,8 @@ const messages = [
     }
 ];
 
-async function getMessageById(messageId) {
-    messages.find(message => message.id === messageId)
+async function getMessageFromDB(messageId) {
+    return messages.find(message => message.id === messageId);
 }
 
-module.exports = { messages, getMessageById }
+module.exports = { messages, getMessageFromDB }
