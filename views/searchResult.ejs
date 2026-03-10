@@ -11,12 +11,9 @@
         <%= title %>
     </h1>
     <ul>
-        <% if (locals.users.length > 0) {%>
-            <form action="/" method="GET">
-                <input type="search" name="search">
-                <button type="submit">Search</button>
-            </form>
-            <% users.forEach(user=> { %>
+        <% if (locals.result.length > 0) {%>
+
+            <% result.forEach(user=> { %>
                 <li>
                     ID: <%= user.id %>, Name: <%= user.firstName %>
                             <%= user.lastName %>

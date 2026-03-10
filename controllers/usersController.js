@@ -38,9 +38,9 @@ const validateUser = [
     .isLength({ min: 1, max: 10 }).withMessage(`Last name ${lengthErr}`),
   body("email").trim()
     .isEmail().withMessage(`Email ${emailErr}`),
-  body("age").optional({values: 'falsy'}).trim()
+  body("age").optional({ values: 'falsy' }).trim()
     .isInt({ min: 1, max: 120 }).withMessage(`Age ${ageErr}`),
-  body("bio").optional({values: 'falsy'}).trim()
+  body("bio").optional({ values: 'falsy' }).trim()
     .isLength({ max: 200 }).withMessage(`Bio ${bioErr}`),
 ];
 
@@ -92,4 +92,16 @@ exports.usersUpdatePost = [
 exports.usersDeletePost = (req, res) => {
   usersStorage.deleteUser(req.params.id);
   res.redirect("/users");
+};
+
+// SEARCH
+exports.usersSearch = (req, res) => {
+  const { search } = req.query();
+  const users = usersStorage.getUsers();
+  const result = users.filter(user =>
+  (user.firstName.includes(search) ||
+    user.lastName.includes(search) ||
+    user.email.includes(search) ||
+    (user.firstName + ' ' + user.lastName).includes(search)));
+  res.render("searchResult", { result: result});
 };
