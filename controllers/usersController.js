@@ -96,12 +96,15 @@ exports.usersDeletePost = (req, res) => {
 
 // SEARCH
 exports.usersSearch = (req, res) => {
-  const { search } = req.query();
+  const { search } = req.query;
   const users = usersStorage.getUsers();
   const result = users.filter(user =>
   (user.firstName.includes(search) ||
     user.lastName.includes(search) ||
     user.email.includes(search) ||
     (user.firstName + ' ' + user.lastName).includes(search)));
-  res.render("searchResult", { result: result});
+  res.render("users", {
+    title: "Search Result",
+    users: result,
+  });
 };
