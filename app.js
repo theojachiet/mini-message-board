@@ -12,8 +12,8 @@ app.set("view engine", "ejs");
 const indexRouter = require('./routes/indexRouter');
 const userRouter = require('./routes/userRouter');
 
+app.use('/users', userRouter);
 app.use('/', indexRouter);
-app.use('/user', userRouter);
 
 app.listen(3000, (error) => {
     if (error) throw error;

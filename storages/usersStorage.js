@@ -26,6 +26,7 @@ class UsersStorage {
     delete this.storage[id];
   }
 }
+
 // Rather than exporting the class, we can export an instance of the class by instantiating it.
 // This ensures only one instance of this class can exist, also known as the "singleton" pattern.
 module.exports = new UsersStorage();
