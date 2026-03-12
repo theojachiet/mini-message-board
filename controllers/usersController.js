@@ -4,7 +4,11 @@ const db = require("../db/queries");
 async function getUsernames(req, res) {
   const usernames = await db.getAllUsernames();
   console.log('usernames: ', usernames);
-  res.send("Usernames: " + usernames.map(user => user.username).join(', '));
+  res.render("users", {
+    title: "Usernames list",
+    users: usernames,
+  });
+  // res.send("Usernames: " + usernames.map(user => user.username).join(', '));
 }
 
 async function createUsernameGet(req, res) {
@@ -30,12 +34,19 @@ async function clearDatabase(req, res) {
   res.redirect('/users')
 }
 
+async function usersDeletePost(req, res) {
+  const userId = req.params.id;
+  await db.deleteUser(userId);
+  res.redirect('/users');
+}
+
 module.exports = {
   getUsernames,
   createUsernameGet,
   createUsernamePost,
   clearDatabase,
-  searchDatabase
+  searchDatabase,
+  usersDeletePost
 };
 
 // exports.usersListGet = (req, res) => {

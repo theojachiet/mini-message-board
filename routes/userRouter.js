@@ -12,8 +12,8 @@ usersRouter.post("/create", usersController.createUsernamePost);
 // usersRouter.get("/:id/update", usersController.usersUpdateGet);
 // usersRouter.post("/:id/update", usersController.usersUpdatePost);
 
-// // DELETE
-// usersRouter.post("/:id/delete", usersController.usersDeletePost);
+// DELETE
+usersRouter.post("/:id/delete", usersController.usersDeletePost);
 
 // // SEARCH
 // usersRouter.get("/search", usersController.usersSearch);

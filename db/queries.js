@@ -17,9 +17,14 @@ async function search(searchInput) {
     await pool.query("SELECT * FROM usernames WHERE username LIKE '%($1)%'", [searchInput]);
 }
 
+async function deleteUser(id) {
+  await pool.query("DELETE FROM usernames WHERE id=($1)", [id]);
+}
+
 module.exports = {
   getAllUsernames,
   insertUsername,
   clearDatabase,
-  search
+  search,
+  deleteUser
 };
