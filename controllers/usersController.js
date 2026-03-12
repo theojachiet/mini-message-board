@@ -31,7 +31,7 @@ async function searchDatabase(req, res) {
 
 async function clearDatabase(req, res) {
   await db.clearDatabase();
-  res.redirect('/users')
+  res.redirect('/users');
 }
 
 async function usersDeletePost(req, res) {

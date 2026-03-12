@@ -4,7 +4,6 @@ const usersRouter = Router();
 
 // CREATE
 usersRouter.get("/", usersController.getUsernames);
-usersRouter.get('/clear', usersController.clearDatabase);
 usersRouter.get("/create", usersController.createUsernameGet);
 usersRouter.post("/create", usersController.createUsernamePost);
 
@@ -14,6 +13,8 @@ usersRouter.post("/create", usersController.createUsernamePost);
 
 // DELETE
 usersRouter.post("/:id/delete", usersController.usersDeletePost);
+usersRouter.get('/clear', usersController.clearDatabase);
+
 
 // // SEARCH
 // usersRouter.get("/search", usersController.usersSearch);
