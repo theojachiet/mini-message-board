@@ -13,8 +13,13 @@ async function clearDatabase() {
     await pool.query("DELETE FROM usernames");
 }
 
+async function search(searchInput) {
+    await pool.query("SELECT * FROM usernames WHERE username LIKE '%($1)%'", [searchInput]);
+}
+
 module.exports = {
   getAllUsernames,
   insertUsername,
-  clearDatabase
+  clearDatabase,
+  search
 };

@@ -16,19 +16,26 @@ async function createUsernameGet(req, res) {
 async function createUsernamePost(req, res) {
   const { username } = req.body;
   await db.insertUsername(username);
-  res.redirect("/");
+  res.redirect("/users");
+}
+
+async function searchDatabase(req, res) {
+  const { searchInput } = req.body;
+  const searchResult = await db.search(searchInput);
+  res.send('Search Result:' + searchResult.map(user => user.username).join(', '));
 }
 
 async function clearDatabase(req, res) {
   await db.clearDatabase();
-  res.redirect('/')
+  res.redirect('/users')
 }
 
 module.exports = {
   getUsernames,
   createUsernameGet,
   createUsernamePost,
-  clearDatabase
+  clearDatabase,
+  searchDatabase
 };
 
 // exports.usersListGet = (req, res) => {
