@@ -10,18 +10,18 @@
     <h1>
         <%= title %>
     </h1>
-    <%- include("partials/errors.ejs") %>
+    <!-- <%- include("partials/errors.ejs") %> -->
     <form action="/users/create" method="POST">
-        <label for="firstName">First Name: </label>
-        <input type="text" name="firstName" id="firstName" required>
-        <label for="lastName">Last Name: </label>
+        <label for="firstName">Username: </label>
+        <input type="text" name="username" id="firstName" required>
+        <!-- <label for="lastName">Last Name: </label>
         <input type="text" name="lastName" id="lastName" required>
         <label for="email">email: </label>
         <input type="email" name="email" id="email" required>
         <label for="age">Age: </label>
         <input type="number" name="age" id="age">
         <label for="bio">Bio: </label>
-        <textarea name="bio" id="bio" rows="6" cols="33"></textarea>
+        <textarea name="bio" id="bio" rows="6" cols="33"></textarea> -->
         <button type="submit">Submit</button>
     </form>
     <a href="/users">Back to home</a>

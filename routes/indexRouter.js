@@ -2,7 +2,6 @@ let path = require('path');
 const db = require('../db.js')
 const { Router } = require('express');
 const { getMessageById } = require('../controllers/messageController.js');
-const { body, validationResult } = require("express-validator");
 
 
 const indexRouter = Router();
