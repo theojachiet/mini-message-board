@@ -19,10 +19,16 @@ async function createUsernamePost(req, res) {
   res.redirect("/");
 }
 
+async function clearDatabase(req, res) {
+  await db.clearDatabase();
+  res.redirect('/')
+}
+
 module.exports = {
   getUsernames,
   createUsernameGet,
-  createUsernamePost
+  createUsernamePost,
+  clearDatabase
 };
 
 // exports.usersListGet = (req, res) => {

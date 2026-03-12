@@ -9,7 +9,12 @@ async function insertUsername(username) {
   await pool.query("INSERT INTO usernames (username) VALUES ($1)", [username]);
 }
 
+async function clearDatabase() {
+    await pool.query("DELETE FROM usernames");
+}
+
 module.exports = {
   getAllUsernames,
-  insertUsername
+  insertUsername,
+  clearDatabase
 };
