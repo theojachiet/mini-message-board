@@ -16,11 +16,11 @@ app.set("view engine", "ejs");
 
 const indexRouter = require('./routes/indexRouter');
 const userRouter = require('./routes/userRouter');
+const membersRouter = require('./routes/membersRouter');
 
 app.use('/users', userRouter);
 app.use('/messages', indexRouter);
-app.get('/', (req, res) => res.render('home'));
-app.get("/signup", (req, res) => res.render("signup"));
+app.use('/',membersRouter)
 
 
 app.listen(3000, (error) => {

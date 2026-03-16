@@ -10,15 +10,24 @@ async function insertUsername(username) {
 }
 
 async function clearDatabase() {
-    await pool.query("DELETE FROM usernames");
+  await pool.query("DELETE FROM usernames");
 }
 
 async function search(searchInput) {
-    await pool.query("SELECT * FROM usernames WHERE username LIKE '%($1)%'", [searchInput]);
+  await pool.query("SELECT * FROM usernames WHERE username LIKE '%($1)%'", [searchInput]);
 }
 
 async function deleteUser(id) {
   await pool.query("DELETE FROM usernames WHERE id=($1)", [id]);
+}
+
+//NEW
+
+async function addUser(name, password) {
+  await pool.query("INSERT INTO users (username, password) VALUES ($1, $2)", [
+    name,
+    password,
+  ]);
 }
 
 module.exports = {
@@ -26,5 +35,6 @@ module.exports = {
   insertUsername,
   clearDatabase,
   search,
-  deleteUser
+  deleteUser,
+  addUser,
 };
