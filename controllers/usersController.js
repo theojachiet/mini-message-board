@@ -1,4 +1,3 @@
-const usersStorage = require("../storages/usersStorage");
 const db = require("../db/queries");
 
 async function getUsernames(req, res) {
