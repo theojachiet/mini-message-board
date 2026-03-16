@@ -6,6 +6,12 @@ CREATE TABLE IF NOT EXISTS usernames (
   username VARCHAR ( 255 )
 );
 
+CREATE TABLE IF NOT EXISTS users (
+   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+   username VARCHAR ( 255 ),
+   password VARCHAR ( 255 )
+);
+
 INSERT INTO usernames (username) 
 VALUES
   ('Bryan'),
