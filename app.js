@@ -18,7 +18,8 @@ const indexRouter = require('./routes/indexRouter');
 const userRouter = require('./routes/userRouter');
 
 app.use('/users', userRouter);
-app.use('/', indexRouter);
+app.use('/messages', indexRouter);
+app.get('/', (req, res) => res.render('home'));
 
 app.listen(3000, (error) => {
     if (error) throw error;

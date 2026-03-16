@@ -8,7 +8,7 @@
 <body>
     <ul>
         <% messages.forEach(message=> { %>
-            <a href="/<%= message.id %>">
+            <a href="/messages/<%= message.id %>">
                 <li>
                     <div class="messageInfo">
                         <div class="nameContainer"><%- message.user %></div>
@@ -21,7 +21,7 @@
             </a>
             <% }) %>
     </ul>
-    <a href="/new">New message</a>
+    <a href="/messages/new">New message</a>
 </body>
 
 </html>
