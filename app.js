@@ -5,6 +5,7 @@ const assetsPath = path.join(__dirname, "public");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require('passport-local').Strategy;
+const pool = require("./db/pool");
 
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.session());
