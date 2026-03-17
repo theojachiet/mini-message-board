@@ -4,6 +4,7 @@ const path = require('node:path');
 const assetsPath = path.join(__dirname, "public");
 const session = require("express-session");
 const passport = require("passport");
+const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local').Strategy;
 const pool = require("./db/pool");
 
@@ -19,46 +20,51 @@ const indexRouter = require('./routes/indexRouter');
 const userRouter = require('./routes/userRouter');
 const membersRouter = require('./routes/membersRouter');
 
-app.use('/users', userRouter);
-app.use('/messages', indexRouter);
-app.use('/',membersRouter);
-
 //Authntication function
 passport.use(
-  new LocalStrategy(async (username, password, done) => {
-    try {
-      const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
-      const user = rows[0];
+    new LocalStrategy(async (username, password, done) => {
+        try {
+            const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
+            const user = rows[0];
 
-      if (!user) {
-        return done(null, false, { message: "Incorrect username" });
-      }
-      if (user.password !== password) {
-        return done(null, false, { message: "Incorrect password" });
-      }
-      return done(null, user);
-    } catch(err) {
-      return done(err);
-    }
-  })
+            if (!user) {
+                return done(null, false, { message: "Incorrect username" });
+            }
+            if (user.password !== password) {
+                return done(null, false, { message: "Incorrect password" });
+            }
+            return done(null, user);
+        } catch (err) {
+            return done(err);
+        }
+    })
 );
 
 // Session functions
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+    done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
-  try {
-    const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
-    const user = rows[0];
+    try {
+        const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+        const user = rows[0];
 
-    done(null, user);
-  } catch(err) {
-    done(err);
-  }
+        done(null, user);
+    } catch (err) {
+        done(err);
+    }
 });
 
+// Accessing currentUser through the whole app
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    next();
+});
+
+app.use('/users', userRouter);
+app.use('/messages', indexRouter);
+app.use('/', membersRouter);
 
 app.listen(3000, (error) => {
     if (error) throw error;
@@ -66,10 +72,10 @@ app.listen(3000, (error) => {
 });
 
 app.use((req, res) => {
-    res.status(404).sendFile('./404.html', {root: __dirname});
+    res.status(404).sendFile('./404.html', { root: __dirname });
 })
 
 app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(err.statusCode || 500).send(err.message);
+    console.error(err);
+    res.status(err.statusCode || 500).send(err.message);
 });
