@@ -4,7 +4,6 @@ const path = require('node:path');
 const assetsPath = path.join(__dirname, "public");
 const session = require("express-session");
 const passport = require("passport");
-const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local').Strategy;
 const pool = require("./db/pool");
 

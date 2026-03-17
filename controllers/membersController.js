@@ -1,11 +1,14 @@
 const db = require('../db/queries');
+const bcrypt = require('bcryptjs');
 
-async function createUser(req, res) {
+async function createUser(req, res, next) {
     try {
-        await db.addUser(req.body.username, req.body.password)
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        await db.addUser(req.body.username, hashedPassword)
         res.redirect("/");
     } catch (err) {
-        return next(err);
+        console.log(err);
+        next(err);
     }
 }
 
